@@ -1,7 +1,7 @@
 version: 2
 jobs:
   checkout_code:
-    working_directory: ~/sayfizz
+    working_directory: ~/anotherfizz
     docker:
       - image: circleci/python:3.6.1
     steps:
@@ -10,7 +10,7 @@ jobs:
           root: .
           paths: .
   unit_tests:
-    working_directory: ~/sayfizz
+    working_directory: ~/anotherfizz
     docker:
       - image: circleci/python:3.6.1
     steps:
