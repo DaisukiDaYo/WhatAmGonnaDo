@@ -59,3 +59,6 @@ workflows:
       - build_docker_image:
           requires:
             - unit_tests
+      - deploy_production:
+          requires:
+            - build_docker_image
