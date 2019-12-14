@@ -31,6 +31,23 @@ jobs:
           docker build . -t underr/fizzbuzz:latest
           docker login -u underr -p $DOCKER_PASS
           docker push underr/fizzbuzz:latest
+  deploy_production:
+    working_directory: ~/anotherfizz
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - attach_workspace:
+          at: .
+      - setup_remote_docker
+      - add_ssh_keys:
+          fingerprints:
+            - "dd:e4:2e:87:10:15:65:c1:b4:90:83:ff:c9:3c:5e:b9"
+      - run: |
+          name: Deploy to Production Server
+          command: |
+            cd ansible
+            pipenv install ansible
+            pipenv run ansible-playbook -i hosts production.yml --extra-vars "path=.."
 workflows:
   version: 2
   say-fizz-pipeline:
