@@ -28,9 +28,9 @@ jobs:
           at: .
       - setup_remote_docker
       - run: |
-        docker build . -t underr/fizzbuzz:latest
-        docker login -u roseth -p $DOCKER_PASS
-        docker push underr/fizzbuzz:latest
+          docker build . -t underr/fizzbuzz:latest
+          docker login -u underr -p $DOCKER_PASS
+          docker push underr/fizzbuzz:latest
 workflows:
   version: 2
   say-fizz-pipeline:
